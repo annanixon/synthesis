@@ -458,7 +458,7 @@ public class SimUI : MonoBehaviour
         }
         else
         {
-            unitConversionButton.GetComponentInChildren<Text>().text = "To Meter";
+            unitConversionButton.GetComponentInChildren<Text>().text = "To Meters";
         }
     }
 
