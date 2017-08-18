@@ -53,9 +53,11 @@ namespace BxDFieldExporter
 
         private void OKButton_OnClick(object sender, EventArgs e)
         {
+
             StandardAddInServer.okButton_Clicked = true;
             mAddInInterface.SetRunOnce(false);
             StandardAddInServer.done = true;
+            StandardAddInServer.task.TrySetResult(true);
             this.Close();
         }
 
@@ -63,13 +65,9 @@ namespace BxDFieldExporter
         {
             mAddInInterface.SetCancel(true);
             mAddInInterface.SetRunOnce(false);
+            StandardAddInServer.task.TrySetResult(true);
+            mApplication.CommandManager.Pick(SelectionFilterEnum.kAssemblyOccurrenceFilter, "");
             this.Close();
-        }
-
-        private void ApplyButton_OnClick(object sender, EventArgs e)
-        {
-            mAddInInterface.SetRunOnce(false);
-            StandardAddInServer.applyButton_Clicked = true;
         }
 
         private void AddAssembly_Load(object sender, EventArgs e)
@@ -81,6 +79,18 @@ namespace BxDFieldExporter
         {
             mAddInInterface.SetCancel(true);
             mAddInInterface.SetRunOnce(false);
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ApplyButton_Click(object sender, EventArgs e)
+        {
+            mAddInInterface.SetRunOnce(false);
+            StandardAddInServer.applyButton_Clicked = true;
+            StandardAddInServer.task.TrySetResult(true);
         }
 
         ///// <summary>
